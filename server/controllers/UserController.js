@@ -12,7 +12,7 @@ const register = async (req, res) => {
         const existedNick = await User.findOne({ nickname });
         if (oldUser) {
             return res.status(401).json({ message: "Користувач уже існує, введіть інші дані" });
-        } else if (nickname) {
+        } else if (existedNick) {
             return res.status(401).json({ message: "Користувач з таким ім'ям існує. Введіть інші дані" })
         } else {
             const newUser = await User.create({
@@ -37,4 +37,54 @@ const login = async (req, res) => {
     if (!user) {
         return res.status(401).json({ message: "Користувача не знайдено, введіть іншу пошту" });
     }
+    if (await bcrypt.compare(password, user.password)) {
+        const token = jwt.sign({
+            usid: user._id,
+            email: user.email,
+            role: user.role
+        }, config.jwt.TOKEN, {
+            expiresIn: config.jwt.EXPIRESIN,
+        })
+
+        if (res.status(200)) {
+            return res.json({
+                user: user,
+                userRole: user.role,
+                token: `Bearer ${token}`
+            });
+        }
+    } else {
+        return res.status(401).json({ message: "Пароль не вірний" });
+    }
+}
+
+const getUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+
+        if (!user) {
+            res.status(404).json({
+                message: "Користувача не знайдено"
+            })
+        }
+        const token = jwt.sign({
+            usid: user._id,
+            email: user.email,
+            role: user.role
+        }, config.jwt.TOKEN, {
+            expiresIn: config.jwt.EXPIRESIN,
+        })
+        return res.status(200).json({
+            user: user,
+            token: `Bearer ${token}`
+        })
+    } catch (error) {
+        res.status(404).json({ message: "Не вдалось знайти користувача" });
+    }
+}
+
+module.exports = {
+    register,
+    login,
+    getUser
 }
