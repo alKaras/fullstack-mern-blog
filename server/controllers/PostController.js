@@ -26,7 +26,7 @@ const getPost = async (req, res) => {
                 if (err) {
                     console.log(err);
                     return res.status(500).json({
-                        message: 'Не вдається отримати пости',
+                        message: 'Не вдається отримати статті',
                     });
                 }
 
