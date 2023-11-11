@@ -1,0 +1,60 @@
+.root {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    align-items: center;
+
+    .post-img {
+        max-width: 200px;
+        border-radius: 15px;
+        object-fit: cover;
+        background-color: black;
+    }
+
+    .text-content {
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .post-headtext {
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 150%;
+    }
+
+    .post-descr {
+        color: gray;
+        line-height: 150%;
+    }
+
+    .post-btn {
+        font-weight: 600;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .post-infor {
+        color: gray;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .post-tags {
+        display: flex;
+        gap: 5px;
+        color: rgba($color: #000000, $alpha: 0.6);
+
+
+        & > * {
+            background: rgba($color: gray, $alpha: 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
+    
+}

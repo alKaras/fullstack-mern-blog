@@ -1,0 +1,31 @@
+.root {
+    padding: 20px 120px;
+    background: #ffffff;
+    box-shadow: 0px 6px 10px rgba(2, 2, 2, 0.25);
+
+    .brand-text {
+        color: black;
+        font-size: 24px;
+        margin: 0;
+        padding-left: 10px;
+    }
+
+    .search {
+        width: 250px;
+        margin-left: auto;
+        margin-right: 50px;
+    }
+
+    .btn-join {
+        background-color: rgb(255, 205, 111);
+        border: none;
+        padding: 10px;
+        border-radius: 15px;
+        color: black;
+        font-size: 16px;
+
+        &:hover {
+            scale: 1.0123;
+        }
+    }
+}
