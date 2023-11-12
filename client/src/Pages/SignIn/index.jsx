@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import SignInStyles from './SignIn.module.scss'
 import { useForm } from 'react-hook-form';
-// import { loginUser, selectIsAdmin, selectIsLogged } from '../../redux/slices/loginSlice';
+import { loginUser, selectIsLogged } from '../../redux/slices/authSlice';
 
 export default function SignIn() {
-    // const isLogged = useSelector(selectIsLogged);
-    // const isAdmin = useSelector(selectIsAdmin);
+    const isLogged = useSelector(selectIsLogged);
     const { error } = useSelector((state) => state.logreg);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -27,22 +26,16 @@ export default function SignIn() {
     });
 
     const onSubmit = (values) => {
-        // dispatch(loginUser(values));
+        dispatch(loginUser(values));
 
     }
 
     console.log(error);
-    // useEffect(() => {
-    //     if (isLogged && isAdmin) {
-    //         navigate('/adminCabinet')
-    //     } else if (isLogged && !isAdmin) {
-    //         navigate('/userCabinet')
-    //     }
-    // }, [isLogged, isAdmin, navigate])
-
-
-
-
+    useEffect(() => {
+        if (isLogged) {
+            navigate('/')
+        }
+    }, [isLogged, navigate])
 
     const [passType, setPassType] = useState("password");
     const togglePass = (e) => {

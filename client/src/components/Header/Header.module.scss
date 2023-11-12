@@ -28,4 +28,18 @@
             scale: 1.0123;
         }
     }
+    .drop-link {
+        padding: 10px;
+    }
+
+    .profile {
+        background: white;
+        color: black;
+        border: none;
+        padding: 10px 20px 10px 20px;
+        &:focus {
+            background-color: #ffffff;
+            color: black;
+        }
+    }
 }

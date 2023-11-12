@@ -25,11 +25,11 @@ export default function Post() {
                     <div className={PostStyles['post-infor']}>
                         <small>Автор: Карась. О</small>
                         <small>05.10.2023 18:00:00</small>
-                        <small><i class="fa-regular fa-eye"></i> 123</small>
+                        <small><i className="fa-regular fa-eye"></i> 123</small>
                     </div>
 
                 </div>
-                <Button variant='info' className={PostStyles['post-btn']}><i class="fa-solid fa-right-long"></i></Button>
+                <Button variant='info' className={PostStyles['post-btn']}><i className="fa-solid fa-right-long"></i></Button>
             </div>
         </>
     )

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import SignUpStyles from './SignUp.module.scss'
 import { useForm } from 'react-hook-form';
-// import { registerUser, selectIsRegged } from '../../redux/slices/loginSlice';
+import { registerUser, selectIsRegged } from '../../redux/slices/authSlice';
 export default function SignUp() {
     const navigate = useNavigate();
-    // const isRegged = useSelector(selectIsRegged);
+    const isRegged = useSelector(selectIsRegged);
     const { error } = useSelector((state) => state.logreg);
     const dispatch = useDispatch();
     console.log(error);
@@ -18,70 +18,38 @@ export default function SignUp() {
         }
     } = useForm({
         defaultValues: {
-            fname: "",
-            lname: "",
-            patronimic: "",
-            address: "",
+            nickname: "",
             email: "",
-            password: "",
+            password: ""
         },
         mode: "onChange",
     });
 
     const onSubmit = (values) => {
-        // dispatch(registerUser(values));
+        dispatch(registerUser(values));
 
     }
-    // useEffect(() => {
-    //     if (isRegged) {
-    //         navigate('/sign-in')
-    //     }
-    // }, [isRegged, navigate])
+    useEffect(() => {
+        if (isRegged) {
+            navigate('/sign-in')
+        }
+    }, [isRegged, navigate])
     return (
         <div className={`${SignUpStyles.login}`}>
             <form className={`${SignUpStyles['login-form']}`} onSubmit={handleSubmit(onSubmit)}>
                 <div className={`${SignUpStyles['auth-form-content']}`}>
                     <h3 className={`${SignUpStyles['auth-form-title']}`}>Реєстрація</h3>
                     <div className="d-flex flex-column">
-                        <label>Ім'я</label>
+                        <label>Нікнейм</label>
                         <input
                             type="text"
                             className={`${errors.fname ? SignUpStyles['error-input'] : ''}`}
-                            placeholder={`Введіть своє ім'я`}
-                            {...register('fname', { required: `Ім'я є обов'язковим полем` })}
+                            placeholder={`Введіть нікнейм`}
+                            {...register('nickname', { required: `Нікнейм є обов'язковим полем` })}
                         />
                     </div>
-                    {errors.fname && <div className={`${SignUpStyles['error-style']}`}>{errors.fname.message}</div>}
-                    <div className="d-flex flex-column">
-                        <label>Прізвище</label>
-                        <input
-                            type="text"
-                            className={`${errors.fname ? SignUpStyles['error-input'] : ''}`}
-                            placeholder={`Введіть своє прізвище`}
-                            {...register('lname', { required: `Прізвище є обов'язковим полем` })}
-                        />
-                    </div>
-                    {errors.lname && <div className={`${SignUpStyles['error-style']}`}>{errors.lname.message}</div>}
-                    <div className="d-flex flex-column">
-                        <label>Ім'я по батькові</label>
-                        <input
-                            type="text"
-                            className={`${errors.fname ? SignUpStyles['error-input'] : ''}`}
-                            placeholder={`Введіть своє ім'я по батькові`}
-                            {...register('patronimic', { required: `Ім'я по батькові є обов'язковим` })}
-                        />
-                    </div>
-                    {errors.patronimic && <div className={`${SignUpStyles['error-style']}`}>{errors.patronimic.message}</div>}
-                    <div className="d-flex flex-column">
-                        <label>Адреса</label>
-                        <input
-                            type="text"
-                            className={`${errors.fname ? SignUpStyles['error-input'] : ''}`}
-                            placeholder={`Введіть свою адресу`}
-                            {...register('address', { required: `Адреса є обов'язковим полем` })}
-                        />
-                    </div>
-                    {errors.address && <div className={`${SignUpStyles['error-style']}`}>{errors.address.message}</div>}
+                    {errors.nickname && <div className={`${SignUpStyles['error-style']}`}>{errors.nickname.message}</div>}
+                    
                     <div className="d-flex flex-column">
                         <label>Пошта</label>
                         <input
