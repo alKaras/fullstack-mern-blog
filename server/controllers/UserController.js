@@ -84,7 +84,7 @@ const getUser = async (req, res) => {
 }
 
 module.exports = {
-    register,
     login,
+    register,
     getUser
 }
