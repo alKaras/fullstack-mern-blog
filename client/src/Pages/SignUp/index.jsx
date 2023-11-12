@@ -27,7 +27,6 @@ export default function SignUp() {
 
     const onSubmit = (values) => {
         dispatch(registerUser(values));
-
     }
     useEffect(() => {
         if (isRegged) {
@@ -74,7 +73,6 @@ export default function SignUp() {
 
                     <div className='d-flex justify-content-between align-items-center'>
                         <button type="submit" className='btn btn-primary'>Зареєструватись</button>
-                        <Link to={'/sign-in'}>Увійти в кабінет</Link>
                         <Link to={'/'}>На головну</Link>
                     </div>
 

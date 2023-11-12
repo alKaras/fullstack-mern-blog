@@ -77,7 +77,6 @@ export default function SignIn() {
 
                     <div className='d-flex justify-content-between align-items-center'>
                         <button type="submit" className='btn btn-primary'>Увійти</button>
-                        <Link className='ms-3' to={'/sign-up'}>Зареєструватися</Link>
                         <Link className='ms-3'  to={'/'}>Повернутись на головну</Link>
                     </div>
 
