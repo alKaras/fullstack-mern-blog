@@ -27,34 +27,22 @@ const getAll = async (req, res) => {
 const getOne = async (req, res) => {
     try {
         const postId = req.params.id;
-        Post.findOneAndUpdate(
+        const post = await Post.findOneAndUpdate(
             {
                 _id: postId,
             },
             {
-                $inc: {viewsCount: 1},
+                $inc: { viewsCount: 1 },
             },
             {
                 returnDocument: 'after',
-            },
-            (err, doc) => {
-                if(err){
-                    return res.status(500).json({
-                        message: "Не вдалось вернути статтю"
-                    })
-                }
-
-                if (!doc){
-                    return res.status(404).json({
-                        message: "Стаття не знайдена"
-                    })
-                }
-
-                res.json(doc);
-            },
+            }
         ).populate('user');
+
+        res.json(post);
     } catch (error) {
-        res.status(500).json({ message: "Не вдалось отримати статтю "});
+        console.log(error);
+        res.status(500).json({ message: "Не вдалось отримати статтю " });
     }
 }
 
@@ -64,13 +52,14 @@ const createPost = async (req, res) => {
             title: req.body.title,
             text: req.body.text,
             imageUrl: req.body.imageUrl,
-            tags: req.body.tags.split(','),
+            tags: req.body.tags,
             user: req.user
         });
 
         const post = await doc.save();
         res.status(200).json(post);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: "Не вдалось створити статтю" })
     }
 }
@@ -79,29 +68,15 @@ const removePost = async (req, res) => {
     try {
         const postId = req.params.id;
 
-        Post.findOneAndDelete(
+        await Post.findOneAndDelete(
             {
                 _id: postId,
-            },
-            (err, doc) => {
-                if (err) {
-                    return res.status(500).json({
-                        message: 'Не вдалось видалити статтю',
-                    });
-                }
-
-                if (!doc) {
-                    return res.status(404).json({
-                        message: 'Стаття не знайдена',
-                    });
-                }
-
-                res.json({
-                    success: true,
-                });
-            },
+            }
         );
+
+        res.json({ success: true })
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: "Не вдалось отрмати статті" })
     }
 }
@@ -119,12 +94,13 @@ const updatePost = async (req, res) => {
                 text: req.body.text,
                 imageUrl: req.body.imageUrl,
                 user: req.user,
-                tags: req.body.tags.split(','),
+                tags: req.body.tags,
             },
         );
 
         res.json({ success: true });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'не вдалось отримати статтю' })
     }
 }

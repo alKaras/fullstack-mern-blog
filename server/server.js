@@ -46,7 +46,7 @@ app.post('/upload', auth, upload.single('image'), (req, res) => {
     });
 });
 
-app.use('/api/v1/post', PostRouter);
+app.use('/api/v1/posts', PostRouter);
 
 app.listen(config.host.PORT, () => {
     console.log("Server is started successfuly");
