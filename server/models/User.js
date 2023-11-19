@@ -4,20 +4,20 @@ const userModelSchema = new mongoose.Schema(
     {
         nickname: {
             type: String,
-            require: true,
+            required: true,
         },
         email: {
             type: String,
-            require: true,
+            required: true,
             unique: true,
         },
         password: {
             type: String,
-            require: true,
+            required: true,
         },
         role: {
             type: String,
-            require: true,
+            required: true,
             default: "reader"
         },
     },

@@ -4,11 +4,11 @@ const PostSchema = new mongoose.Schema(
     {
         title: {
             type: String,
-            require: true,
+            required: true,
         },
         text: {
             type: String,
-            require: true,
+            required: true,
             unique: true,
         },
         tags: {
@@ -22,7 +22,7 @@ const PostSchema = new mongoose.Schema(
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users',
-            require: true,
+            required: true,
         },
         imageURL: String,
     },
