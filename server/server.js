@@ -36,16 +36,16 @@ mongoose
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use('/uploads', express.static('uploads'));
+
 
 app.use('/api/v1/user', UserRouter);
 
-app.post('/upload', auth, upload.single('image'), (req, res) => {
+app.post('/api/v1/uploads', auth, upload.single('image'), (req, res) => {
     res.json({
         url: `/uploads/${req.file.originalname}`,
     });
 });
-
+app.use('/api/v1/uploads', express.static('uploads'));
 app.use('/api/v1/posts', PostRouter);
 
 app.listen(config.host.PORT, () => {
