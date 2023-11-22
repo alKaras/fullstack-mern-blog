@@ -1,32 +1,38 @@
 .root {
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-    align-items: center;
+    margin: 0 auto;
+    max-width: 600px;
+    border-radius: 25px;
+    padding-bottom: 25px;
 
     .post-img {
-        max-width: 200px;
-        border-radius: 15px;
-        object-fit: cover;
-        background-color: black;
+        border-radius: 25px 25px 0 0;
     }
 
     .text-content {
+        padding: 25px 25px 0 25px;
         margin-right: auto;
         display: flex;
         flex-direction: column;
     }
 
     .post-headtext {
-        font-size: 18px;
+        font-size: 24px;
         font-weight: bold;
         line-height: 150%;
+        margin-bottom: 8px;
+    }
+
+    .post-user {
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: rgba($color: #000000, $alpha: 0.6);
     }
 
     .post-descr {
-        color: gray;
+        color: rgba($color: #000000, $alpha: 0.7);
+        font-size: 16px;
         line-height: 150%;
+        margin-bottom: 20px;
     }
 
     .post-btn {
@@ -37,7 +43,7 @@
         padding: 10px;
     }
 
-    .post-infor {
+    .post-footer {
         color: gray;
         display: flex;
         gap: 10px;
@@ -49,12 +55,14 @@
         gap: 5px;
         color: rgba($color: #000000, $alpha: 0.6);
 
-
         & > * {
             background: rgba($color: gray, $alpha: 0.3);
             padding: 5px 10px;
             border-radius: 5px;
         }
     }
-    
+
+    .post-comments {
+        margin-left: 20px;
+    }
 }
