@@ -8,6 +8,18 @@
         background-color: gray;
         border-radius: 15px;
     }
+    .control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .add-btn {
+        padding: 10px;
+        border-radius: 50%;
+        background: lightblue;
+        color: blue;
+    }
 
     .profile {
         border-radius: 15px;

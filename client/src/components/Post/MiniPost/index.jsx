@@ -27,11 +27,6 @@ export default function MiniPost({
                     <small className={`${MiniPostStyle['p-date']}`}><Moment format='DD.MM.YYYY hh:mm'>{createdAt}</Moment></small>
 
                     <div className={`${MiniPostStyle['p-footer']}`}>
-                        <div className={MiniPostStyle['post-tags']}>
-                            {tags.map((name) => (
-                                <small key={name}>{name}</small>
-                            ))}
-                        </div>
                         <div className={`${MiniPostStyle['p-other']}`}>
                             <small>
                                 <i className="fa-regular fa-eye"></i> {viewsCount}
@@ -39,6 +34,11 @@ export default function MiniPost({
                             <small>
                                 <i className="fa-solid fa-comment"></i> {commentsCount}
                             </small>
+                        </div>
+                        <div className={MiniPostStyle['post-tags']}>
+                            {tags.map((name) => (
+                                <small key={name}>{name}</small>
+                            ))}
                         </div>
                     </div>
                 </div>
