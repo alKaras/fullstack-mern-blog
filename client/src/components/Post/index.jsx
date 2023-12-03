@@ -15,7 +15,8 @@ export default function Post({
     commentsCount,
     tags,
     isFullPost,
-    isLoading
+    isLoading,
+    isAuthored
 }) {
 
     useEffect(() => {
@@ -52,7 +53,6 @@ export default function Post({
 
                         }
                         {imageUrl ?
-
                             <>
                                 <div className={`${!isFullPost ? PostStyles['post-img'] : PostStyles['fullpost-img']}`}>
                                     <img
@@ -62,26 +62,44 @@ export default function Post({
                                     />
                                 </div>
                             </>
-
                             :
                             <>
-
                             </>
 
                         }
 
                         <div className={`${PostStyles['text-content']}`}>
-                            {!isFullPost ?
-                                <>
-                                    <Link style={{ cursor: 'pointer' }} to={`/posts/${_id}`}>
-                                        <div className={`${PostStyles['post-headtext']}`}>{title}</div>
-                                    </Link>
-                                </>
-                                :
-                                <>
-                                    <div className={`${PostStyles['full-headtext']}`}>{title}</div>
-                                </>
-                            }
+                            <div className={`${PostStyles['title-wrapper']}`}>
+                                {!isFullPost ?
+                                    <>
+                                        <Link style={{ cursor: 'pointer' }} to={`/posts/${_id}`}>
+                                            <div className={`${PostStyles['post-headtext']}`}>{title}</div>
+                                        </Link>
+                                    </>
+                                    :
+                                    <>
+                                        <div className={`${PostStyles['full-headtext']}`}>{title}</div>
+                                    </>
+                                }
+                                {
+                                    isAuthored &&
+                                    <>
+                                        <div className={`${PostStyles['p-action']}`} >
+                                            <div>
+                                                <button style={{ background: "orange" }} className={`${PostStyles['p-action-btn']}`}>
+                                                    <i className="fa-solid fa-pen"></i>
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <button style={{ background: "red" }} className={`${PostStyles['p-action-btn']}`}>
+                                                    <i className="fa-solid fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </>
+                                }
+                            </div>
+
 
                             <div className={`${!isFullPost ? PostStyles['post-user'] : PostStyles['fullpost-user']}`}>Posted by {user.nickname} | <Moment format='DD.MM.YYYY HH:mm'>{createdAt}</Moment>
                             </div>

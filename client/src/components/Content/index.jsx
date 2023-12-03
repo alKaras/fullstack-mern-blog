@@ -23,7 +23,7 @@ export default function Content() {
                         isPostsLoading ? (
                             <Post key={index} isLoading={true} />
                         ) : (
-                            <Col lg={6} xs={6} md={6} >
+                            <Col lg={4} xs={4} md={4} >
                                 <Post
                                     _id={obj._id}
                                     title={obj.title}
@@ -35,6 +35,7 @@ export default function Content() {
                                     commentsCount={10}
                                     tags={obj.tags}
                                     isFullPost={false}
+                                    isAuthored={true}
                                 />
                             </Col>
                         )
