@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser } from './redux/slices/authSlice';
 import FullPost from './Pages/FullPost';
-import Profile from './Pages/Profile';
 export default function App() {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -18,7 +17,6 @@ export default function App() {
         <div className="_container">
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/profile' element={<Profile />} />
                 <Route path='/sign-up' element={<SignUp />} />
                 <Route path='/sign-in' element={<SignIn />} />
                 <Route path='/posts/:_id' element={<FullPost />} />
