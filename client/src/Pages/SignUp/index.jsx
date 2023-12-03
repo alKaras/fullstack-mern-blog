@@ -72,15 +72,12 @@ export default function SignUp() {
                     </div>
 
                     <div className='d-flex justify-content-between align-items-center'>
-                        <button type="submit" className='btn btn-primary'>Зареєструватись</button>
-                        <Link to={'/'}>На головну</Link>
+                        <button type="submit" style={{fontWeight: 'bold'}} className='btn btn-warning'>Зареєструватись</button>
+                        <Link to={'/'}>На головну <i className="fa-solid fa-house"></i></Link>
                     </div>
 
                     {error && <div className={`${SignUpStyles.error}`}>{error}</div>}
                 </div>
-
-
-
             </form >
         </div >
     )

@@ -5,10 +5,12 @@ import { LinkContainer } from 'react-router-bootstrap';
 import headerStyles from '../Header/Header.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { infoAboutUser, logout, selectIsLogged } from '../../redux/slices/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const isLogged = useSelector(selectIsLogged);
+    const location = useLocation();
+    const isProfile = (location.pathname === '/profile');
     const user = useSelector(infoAboutUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -44,13 +46,17 @@ export default function Header() {
                 </>
             ) :
                 <>
-                    <Form inline className={headerStyles['search']}>
-                        <Form.Control
-                            type="text"
-                            placeholder="Пошук"
-                            className="mr-sm-2"
-                        />
-                    </Form>
+                    {!isProfile ?
+                        <>
+                            <Form inline className={headerStyles['search']}>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Пошук"
+                                    className="mr-sm-2"
+                                />
+                            </Form>
+
+                        </> : <></>}
                     <Nav>
                         <Dropdown align="end">
                             <Dropdown.Toggle className={` ${headerStyles['profile']} shadow-sm rounded d-flex align-items-center justify-content-center`}>
@@ -60,14 +66,8 @@ export default function Header() {
                                 <LinkContainer to='/profile'>
                                     <Dropdown.Item className={`${headerStyles['drop-link']}`}>Профіль</Dropdown.Item>
                                 </LinkContainer>
-                                <LinkContainer to='/create-post'>
+                                <LinkContainer to='/add-post'>
                                     <Dropdown.Item className={`${headerStyles['drop-link']}`}>Створити пост</Dropdown.Item>
-                                </LinkContainer>
-                                <LinkContainer to='/post-manager'>
-                                    <Dropdown.Item className={`${headerStyles['drop-link']}`}>Керувати постами</Dropdown.Item>
-                                </LinkContainer>
-                                <LinkContainer to='/comments'>
-                                    <Dropdown.Item className={`${headerStyles['drop-link']}`}>Мої коментарі</Dropdown.Item>
                                 </LinkContainer>
                                 <Dropdown.Item onClick={logOutHandler} className={`${headerStyles['drop-link']}`}>Вийти</Dropdown.Item>
                             </Dropdown.Menu>
