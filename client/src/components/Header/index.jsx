@@ -19,7 +19,7 @@ export default function Header() {
     }
 
     return (
-        <Navbar expand="md" className={`${headerStyles.root} d-flex justify-content-between fixed-top`} >
+        <Navbar expand="md" className={`${headerStyles.root} d-flex justify-content-between`} >
             <LinkContainer to={'/'}>
                 <Navbar.Brand className='d-flex align-items-center'>
                     <img

@@ -56,3 +56,19 @@ body {
 ._container {
     overflow: hidden;
 }
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    display: none;
+    padding: 20px;
+    background-color: orange;
+    color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .back-to-top.visible {
+    display: block;
+  }

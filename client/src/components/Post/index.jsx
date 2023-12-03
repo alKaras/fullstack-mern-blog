@@ -1,15 +1,7 @@
 import React from 'react'
 import TextTruncate from 'react-text-truncate';
 import PostStyles from '../Post/Post.module.scss';
-export default function Post({
-    _id,
-    title,
-    text,
-    user,
-    createdAt,
-    views,
-    tags
-}) {
+export default function Post() {
     return (
         <>
             <div className={`${PostStyles.root} shadow-lg mb-5 bg-white`}>
@@ -20,8 +12,8 @@ export default function Post({
 
                 <div className={`${PostStyles['text-content']}`}>
 
-                    <div className={`${PostStyles['post-headtext']}`}>{title || "Sample heading"}</div>
-                    <div className={`${PostStyles['post-user']}`}>Posted by {{ ...user } || "O. Karas"} - 05.10.2023 18:00:00</div>
+                    <div className={`${PostStyles['post-headtext']}`}>{"Sample heading"}</div>
+                    <div className={`${PostStyles['post-user']}`}>Posted by {"O. Karas"} - 05.10.2023 18:00:00</div>
 
 
                     <p className={`${PostStyles['post-descr']}`}>

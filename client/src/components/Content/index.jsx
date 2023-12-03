@@ -7,6 +7,8 @@ export default function Content() {
             <div className={ContentStyles.root}>
                 <Post />
                 <Post />
+                <Post />
+                <Post />
             </div>
         </>
     )
