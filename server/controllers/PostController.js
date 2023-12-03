@@ -24,6 +24,16 @@ const getAll = async (req, res) => {
     }
 }
 
+const getMyPosts = async (req, res) => {
+    try {
+        const usid = req.user;
+        const gotPosts = await Post.find({ user: usid })
+        return res.status(200).json({ gotPosts });
+    } catch (error) {
+        return res.status(500).json({ message: "не вдалось отримати пости" });
+    }
+}
+
 const getOne = async (req, res) => {
     try {
         const postId = req.params.id;
@@ -112,4 +122,5 @@ module.exports = {
     createPost,
     removePost,
     updatePost,
+    getMyPosts
 }

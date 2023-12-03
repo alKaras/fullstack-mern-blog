@@ -28,6 +28,7 @@ export default function Post({
     return (
         <>
             <div className={`${isFullPost ? PostStyles['fullpost'] : PostStyles['root']} shadow-lg mb-5 bg-white`}>
+
                 {isFullPost ?
                     <>
                         <div className={`breadcr`}>

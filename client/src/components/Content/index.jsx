@@ -11,7 +11,7 @@ export default function Content() {
                         <Col lg={6} xs={6} md={6} >
                             <Post
                                 _id={1}
-                                title={"Sample title"}
+                                title={"Sample title Sample title "}
                                 imageUrl={"/images/dustin-humes-kDzsgPnHFsM-unsplash.jpg"}
                                 user={{
                                     nickname: "O. Karas"
