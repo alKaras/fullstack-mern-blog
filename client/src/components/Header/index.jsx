@@ -66,7 +66,7 @@ export default function Header() {
                                 <LinkContainer to='/profile'>
                                     <Dropdown.Item className={`${headerStyles['drop-link']}`}>Профіль</Dropdown.Item>
                                 </LinkContainer>
-                                <LinkContainer to='/add-post'>
+                                <LinkContainer to='/create-post'>
                                     <Dropdown.Item className={`${headerStyles['drop-link']}`}>Створити пост</Dropdown.Item>
                                 </LinkContainer>
                                 <Dropdown.Item onClick={logOutHandler} className={`${headerStyles['drop-link']}`}>Вийти</Dropdown.Item>

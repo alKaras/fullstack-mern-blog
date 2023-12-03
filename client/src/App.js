@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser } from './redux/slices/authSlice';
 import FullPost from './Pages/FullPost';
+import CreatePost from './Pages/CreatePost';
+import Header from './components/Header';
 export default function App() {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -20,6 +22,7 @@ export default function App() {
                 <Route path='/sign-up' element={<SignUp />} />
                 <Route path='/sign-in' element={<SignIn />} />
                 <Route path='/posts/:_id' element={<FullPost />} />
+                <Route path='/create-post' element={<CreatePost />} />
             </Routes>
         </div>
     );
