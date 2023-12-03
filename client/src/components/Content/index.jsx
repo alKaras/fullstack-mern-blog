@@ -1,29 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import ContentStyles from '../Content/Content.module.scss';
 import Post from '../Post';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPosts } from '../../redux/slices/postSlice';
 export default function Content() {
+
+    const dispatch = useDispatch();
+    const { posts } = useSelector((state) => state.posts);
+
+    const isPostsLoading = posts.status === 'loading';
+
+    useEffect(() => {
+        dispatch(fetchPosts());
+    }, [])
+
     return (
         <>
             <div className={ContentStyles.root}>
                 <Row>
-                    {[...Array(6)].map(() => (
-                        <Col lg={6} xs={6} md={6} >
-                            <Post
-                                _id={1}
-                                title={"Sample title Sample title "}
-                                imageUrl={"/images/dustin-humes-kDzsgPnHFsM-unsplash.jpg"}
-                                user={{
-                                    nickname: "O. Karas"
-                                }}
-                                text={"sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text sample text"}
-                                createdAt={"03.12.2023"}
-                                viewsCount={150}
-                                commentsCount={10}
-                                tags={['react', 'js', 'holiday']}
-                                isFullPost={false}
-                            />
-                        </Col>
+                    {(isPostsLoading ? [...Array(6)] : posts.items).map((obj, index) => (
+                        isPostsLoading ? (
+                            <Post key={index} isLoading={true} />
+                        ) : (
+                            <Col lg={6} xs={6} md={6} >
+                                <Post
+                                    _id={obj._id}
+                                    title={obj.title}
+                                    imageUrl={obj.imageUrl}
+                                    user={obj.user}
+                                    text={obj.text}
+                                    createdAt={obj.createdAt}
+                                    viewsCount={obj.viewsCount}
+                                    commentsCount={10}
+                                    tags={obj.tags}
+                                    isFullPost={false}
+                                />
+                            </Col>
+                        )
                     ))}
                 </Row>
             </div>
