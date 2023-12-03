@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import ProfileStyles from '../Profile/Profile.module.scss';
-import { Row, Col } from 'react-bootstrap';
 import MiniPost from '../../components/Post/MiniPost';
 import axios from '../../utils/axios';
 
@@ -21,6 +20,7 @@ export default function Profile() {
                 alert('Помилка отримання статей');
             })
     }, [])
+
     return (
         <>
             <Header />
@@ -30,10 +30,6 @@ export default function Profile() {
                         <h2 style={{ fontSize: 24, fontWeight: 'bold' }}>Ваші пости</h2>
                         <button className={`${ProfileStyles['add-btn']}`}><i className="fa-solid fa-plus"></i></button>
                     </div>
-
-
-
-
                     {(isLoading ? [...Array(3)] : data).map((obj, index) => (
                         isLoading ? (
                             <>
@@ -52,8 +48,12 @@ export default function Profile() {
                                 />
                             )
                     ))}
+
+
+
+
                 </div>
-            </div >
+            </div>
         </>
     )
 }

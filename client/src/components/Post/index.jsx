@@ -83,7 +83,7 @@ export default function Post({
                                 </>
                             }
 
-                            <div className={`${!isFullPost ? PostStyles['post-user'] : PostStyles['fullpost-user']}`}>Posted by {user.nickname} | <Moment format='DD.MM.YYYY hh:mm'>{createdAt}</Moment>
+                            <div className={`${!isFullPost ? PostStyles['post-user'] : PostStyles['fullpost-user']}`}>Posted by {user.nickname} | <Moment format='DD.MM.YYYY HH:mm'>{createdAt}</Moment>
                             </div>
 
                             {!isFullPost ?

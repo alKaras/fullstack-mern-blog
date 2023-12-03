@@ -24,7 +24,7 @@ export default function MiniPost({
 
                 <div style={{ marginLeft: 20 }}>
                     <div className={`${MiniPostStyle['p-title']}`}>{title}</div>
-                    <small className={`${MiniPostStyle['p-date']}`}><Moment format='DD.MM.YYYY hh:mm'>{createdAt}</Moment></small>
+                    <small className={`${MiniPostStyle['p-date']}`}><Moment format='DD.MM.YYYY HH:mm'>{createdAt}</Moment></small>
 
                     <div className={`${MiniPostStyle['p-footer']}`}>
                         <div className={`${MiniPostStyle['p-other']}`}>
