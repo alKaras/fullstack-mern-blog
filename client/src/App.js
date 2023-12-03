@@ -6,19 +6,20 @@ import SignIn from './Pages/SignIn';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser } from './redux/slices/authSlice';
-
+import FullPost from './Pages/FullPost';
 export default function App() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getUser());
     }, [dispatch]);
-    
+
     return (
         <div className="_container">
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/sign-up' element={<SignUp />} />
                 <Route path='/sign-in' element={<SignIn />} />
+                <Route path='/posts/:_id' element={<FullPost />} />
             </Routes>
         </div>
     );

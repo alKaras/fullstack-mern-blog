@@ -1,0 +1,44 @@
+.root {
+  padding: 10px 120px;
+  background: #ffffff;
+  box-shadow: 0px 6px 10px rgba(2, 2, 2, 0.25);
+}
+.root .brand-text {
+  color: black;
+  font-size: 24px;
+  margin: 0;
+  padding-left: 10px;
+}
+.root .search {
+  width: 250px;
+  margin-left: auto;
+  margin-right: 50px;
+}
+.root .btn-join {
+  border: 1px solid orange;
+  background-color: #ffffff;
+  padding: 10px;
+  margin-right: 15px;
+  border-radius: 15px;
+  color: black;
+  font-size: 16px;
+}
+.root .btn-join:last-child {
+  background-color: orange;
+}
+.root .btn-join:hover {
+  scale: 1.0123;
+}
+.root .drop-link {
+  padding: 10px;
+}
+.root .profile {
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 20px 10px 20px;
+}
+.root .profile:focus {
+  background-color: #ffffff;
+  color: black;
+}

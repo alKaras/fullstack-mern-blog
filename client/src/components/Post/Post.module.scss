@@ -3,9 +3,12 @@
     max-width: 600px;
     border-radius: 25px;
     padding-bottom: 25px;
+    // transition: transform 0.3s ease-in-out;
 
     .post-img {
-        border-radius: 25px 25px 0 0;
+        img {
+            border-radius: 25px 25px 0 0;
+        }
     }
 
     .text-content {
@@ -24,7 +27,7 @@
 
     .post-user {
         margin-bottom: 20px;
-        font-size: 16px;
+        font-size: 14px;
         color: rgba($color: #000000, $alpha: 0.6);
     }
 
@@ -65,4 +68,68 @@
     .post-comments {
         margin-left: 20px;
     }
+}
+
+.fullpost {
+    border-radius: 15px;
+
+    max-width: 1140px;
+    margin: 100px auto;
+    padding: 25px;
+    
+
+    .fullpost-img {
+        max-height: 400px;
+        overflow: hidden;
+        margin-bottom: 25px;
+        img {
+            border-radius: 15px 15px 0 0;
+        }
+    }
+
+    .full-headtext {
+        font-size: 24px;
+        margin-bottom: 10px;
+        line-height: 150%;
+    }
+
+    .fullpost-user {
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: rgba($color: #000000, $alpha: 0.6);
+    }
+
+    .full-descr {
+        color: rgba($color: #000000, $alpha: 0.7);
+        font-size: 15px;
+        line-height: 150%;
+        margin-bottom: 20px;
+    }
+
+    .post-footer {
+        font-size: 16px;
+        color: gray;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .post-tags {
+        
+        display: flex;
+        gap: 5px;
+        color: rgba($color: #000000, $alpha: 0.6);
+
+        & > * {
+            background: rgba($color: gray, $alpha: 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
+
+    .post-comments {
+        margin-left: 20px;
+    }
+
+    
 }

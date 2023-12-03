@@ -1,0 +1,114 @@
+.login {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+@media screen and (max-width: 767px) {
+  .login {
+    padding: 10px;
+  }
+}
+.login .login-form {
+  width: 420px;
+  box-shadow: rgba(0, 0, 0, 0.16) 1px 1px 10px;
+  padding: 30px 0;
+  border-radius: 8px;
+  background-color: white;
+}
+@media screen and (max-width: 767px) {
+  .login .login-form {
+    padding: 15px 0;
+  }
+}
+.login .auth-form-content {
+  padding: 0 20px;
+}
+@media screen and (max-width: 450px) {
+  .login .auth-form-content {
+    padding: 0 10px;
+  }
+}
+.login .auth-form-title {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+@media screen and (max-width: 767px) {
+  .login .auth-form-title {
+    font-size: calc(16px + 13.6 * (100vw - 320px) / 1260);
+  }
+}
+.login label {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+@media screen and (max-width: 767px) {
+  .login label {
+    font-size: calc(14px + 3.4 * (100vw - 320px) / 1260);
+  }
+}
+.login input {
+  flex: none;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+  outline: 0;
+  margin: 20px 0;
+}
+@media screen and (max-width: 767px) {
+  .login input {
+    font-size: calc(14px + 3.4 * (100vw - 320px) / 1260);
+  }
+}
+.login input:focus {
+  outline: 1px solid #3742c9;
+}
+.login .btn-show {
+  max-width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  outline: 0;
+}
+@media screen and (max-width: 767px) {
+  .login .btn-show {
+    font-size: calc(12px + 3.4 * (100vw - 320px) / 1260);
+    max-width: 150px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .login button,
+  .login a {
+    font-size: calc(10px + 6.8 * (100vw - 320px) / 1260);
+  }
+}
+.login .error-style {
+  color: red;
+  font-size: 12px;
+  margin: -10px 0 10px 0;
+}
+.login .error-input {
+  border: 1px solid red;
+}
+.login .error-input :focus {
+  outline: 1px solid red;
+}
+.login .error {
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+@media screen and (max-width: 767px) {
+  .login .error {
+    font-size: calc(10px + 3.4 * (100vw - 320px) / 1260);
+  }
+}
