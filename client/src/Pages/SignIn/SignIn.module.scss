@@ -67,15 +67,16 @@
     }
 
     input:focus {
-        outline: 1px solid #3742c9;
+        outline: 1px solid orange;
     }
 
     .btn-show {
-        max-width: 200px;
-        padding: 10px;
+        max-width: 150px;
+        padding: 15px;
         border-radius: 10px;
         margin-bottom: 15px;
         outline: 0;
+        text-align: left;
 
         @media screen and (max-width: 767px) {
             font-size: calc(12px + (2 + 2 * 0.7) * ((100vw - 320px) / 1260));
@@ -88,6 +89,13 @@
         @media screen and (max-width: 767px) {
             font-size: calc(12px + (2 + 2 * 0.7) * ((100vw - 320px) / 1260));
         }
+    }
+
+    .btn {
+        background: orange;
+        color: black;
+        font-weight: 900;
+        padding: 10px 25px;
     }
 
     .error-style {

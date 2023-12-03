@@ -9,6 +9,7 @@ import { loginUser, selectIsLogged } from '../../redux/slices/authSlice';
 export default function SignIn() {
     const isLogged = useSelector(selectIsLogged);
     const { error } = useSelector((state) => state.logreg);
+    const [isShowed, setIsShowed] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {
@@ -42,8 +43,10 @@ export default function SignIn() {
         e.preventDefault();
         if (passType === "password") {
             setPassType("text");
+            setIsShowed(true);
         } else {
             setPassType("password");
+            setIsShowed(false);
         }
     }
 
@@ -70,14 +73,19 @@ export default function SignIn() {
                             placeholder='Введіть свій пароль'
                             {...register('password', { required: `Пароль є обов'язковим полем`, pattern: { value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/, message: "Пароль повинен містити не менше 8 символів, 1 цифру, 1 велику літеру" } })}
                         />
+
                         {errors.password && <div className={`${SignInStyles['error-style']}`}>{errors.password.message}</div>}
-                        <button onClick={togglePass} className={`${SignInStyles['btn-show']}`}>Показати пароль</button>
+                        <button onClick={togglePass} className={`${SignInStyles['btn-show']}`}>
+                            Згадати пароль
+                            {!isShowed ? <><i style={{marginLeft: '5px'}} className={`fa-regular fa-eye`}></i></>
+                                : <><i style={{marginLeft: '3px'}} className="fa-regular fa-eye-slash"></i></>}
+                        </button>
 
                     </div>
 
                     <div className='d-flex justify-content-between align-items-center'>
-                        <button type="submit" className='btn btn-primary'>Увійти</button>
-                        <Link className='ms-3'  to={'/'}>Повернутись на головну</Link>
+                        <button type="submit" className={`btn ${SignInStyles['btn']}`}>Увійти</button>
+                        <Link className='ms-3' to={'/'}>На головну <i className="fa-solid fa-house"></i></Link>
                     </div>
 
                     {error && <div className={`${SignInStyles.error}`}>{error}</div>}
