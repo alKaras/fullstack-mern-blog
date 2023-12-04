@@ -3,19 +3,23 @@ import { Row, Col } from 'react-bootstrap'
 import ContentStyles from '../Content/Content.module.scss';
 import Post from '../Post';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from '../../redux/slices/postSlice';
+import { fetchPosts, infoAboutDeleted } from '../../redux/slices/postSlice';
 export default function Content() {
 
     const dispatch = useDispatch();
     const { posts } = useSelector((state) => state.posts);
     const userData = useSelector((state) => state.logreg.user);
-
+    const isPostDeleted = useSelector((state) => state.posts.posts.deletingStatus === 'done');
 
     const isPostsLoading = posts.status === 'loading';
 
     useEffect(() => {
         dispatch(fetchPosts());
-    }, [])
+        
+        if (isPostDeleted) {
+            dispatch(fetchPosts());
+        }
+    }, [dispatch, isPostDeleted])
 
     return (
         <>

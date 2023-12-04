@@ -78,13 +78,13 @@ const removePost = async (req, res) => {
     try {
         const postId = req.params.id;
 
-        await Post.findOneAndDelete(
+        const delPost = await Post.findOneAndDelete(
             {
                 _id: postId,
             }
         );
 
-        res.json({ success: true })
+        res.status(200).json(delPost)
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Не вдалось отрмати статті" })

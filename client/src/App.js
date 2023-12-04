@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { getUser } from './redux/slices/authSlice';
 import FullPost from './Pages/FullPost';
 import CreatePost from './Pages/CreatePost';
-import Header from './components/Header';
+
 export default function App() {
     const dispatch = useDispatch();
     useEffect(() => {

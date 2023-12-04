@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import PostStyles from '../Post/Post.module.scss';
 import Spinner from 'react-bootstrap/Spinner';
 import Moment from 'react-moment';
+import { useDispatch } from 'react-redux';
+import { fetchRemovedPost } from '../../redux/slices/postSlice';
 export default function Post({
     _id,
     title,
@@ -19,6 +21,14 @@ export default function Post({
     isAuthored
 }) {
 
+    const dispatch = useDispatch();
+
+    const onClickRemove = () => {
+        if (window.confirm("Ви хочете видалити статтю?")) {
+            dispatch(fetchRemovedPost(_id));
+        }
+    }
+
     useEffect(() => {
         if (isFullPost) {
             document.title = title;
@@ -28,7 +38,6 @@ export default function Post({
             document.title = 'Blog'
         }
     }, [title, isFullPost])
-    console.log(isAuthored);
     return (
         <>
             {isLoading ?
@@ -92,7 +101,7 @@ export default function Post({
                                                 </button>
                                             </div>
                                             <div>
-                                                <button style={{ background: "red" }} className={`${PostStyles['p-action-btn']}`}>
+                                                <button style={{ background: "red" }} onClick={onClickRemove} className={`${PostStyles['p-action-btn']}`}>
                                                     <i className="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>

@@ -6,13 +6,15 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
     return data;
 });
 
+export const fetchRemovedPost = createAsyncThunk('posts/fetchRemovedPost', async (id) => {
+    const { data } = await axios.delete(`/posts/removePost/${id}`);
+    return data;
+})
+
 const initialState = {
     posts: {
         items: [],
-        isloading: 'loading',
-    },
-    tags: {
-        items: [],
+        deletingStatus: 'process',
         isloading: 'loading',
     }
 }
@@ -35,9 +37,25 @@ const postSlice = createSlice({
                 state.posts.items = []
                 state.posts.isloading = 'error'
             })
+            .addCase(fetchRemovedPost.pending, (state) => {
+                state.posts.deletingStatus = 'process'
+                state.isLoading = 'loading'
+                state.error = null
+            })
+            .addCase(fetchRemovedPost.fulfilled, (state, action) => {
+                state.posts.deletingStatus = 'done'
+                state.isLoading = 'loaded'
+                state.error = null
+            })
+            .addCase(fetchRemovedPost.rejected, (state, action) => {
+                state.isLoading = 'loading'
+                state.posts.deletingStatus = 'error'
+                state.error = action.payload.message
+            })
     }
 })
 
 
 
 export const PostReducer = postSlice.reducer;
+export const infoAboutDeleted = (state) => (state.posts.deletedPost);
