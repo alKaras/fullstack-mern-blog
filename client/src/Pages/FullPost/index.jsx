@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Post from '../../components/Post'
 import Header from '../../components/Header'
 import { useParams } from 'react-router-dom'
+import Markdown from 'react-markdown'
 import axios from '../../utils/axios'
 
 export default function FullPost() {
@@ -31,15 +32,16 @@ export default function FullPost() {
             <Post
                 _id={data._id}
                 title={data.title}
-                imageUrl={data.imageUrl}
+                imageUrl={data.imageUrl ? `http://localhost:3001/api/v1${data.imageUrl} ` : ''}
                 user={data.user}
-                text={data.text}
                 createdAt={data.createdAt}
                 viewsCount={data.viewsCount}
                 commentsCount={10}
                 tags={data.tags}
                 isFullPost={true}
-            />
+            >
+                <Markdown>{data.text}</Markdown>
+            </Post>
 
             {/* <CommentBlock> */}
         </>

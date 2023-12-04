@@ -27,7 +27,7 @@ export default function Content() {
                                 <Post
                                     _id={obj._id}
                                     title={obj.title}
-                                    imageUrl={obj.imageUrl}
+                                    imageUrl={obj.imageUrl ? `http://localhost:3001/api/v1${obj.imageUrl} ` : ''}
                                     user={obj.user}
                                     text={obj.text}
                                     createdAt={obj.createdAt}

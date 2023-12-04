@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import TextTruncate from 'react-text-truncate';
 import PostStyles from '../Post/Post.module.scss';
 import Spinner from 'react-bootstrap/Spinner';
 import Moment from 'react-moment';
@@ -14,6 +13,7 @@ export default function Post({
     viewsCount,
     commentsCount,
     tags,
+    children,
     isFullPost,
     isLoading,
     isAuthored
@@ -56,7 +56,7 @@ export default function Post({
                             <>
                                 <div className={`${!isFullPost ? PostStyles['post-img'] : PostStyles['fullpost-img']}`}>
                                     <img
-                                        src="/images/dustin-humes-kDzsgPnHFsM-unsplash.jpg"
+                                        src={imageUrl}
                                         alt="phot"
                                         className='img-fluid'
                                     />
@@ -104,24 +104,7 @@ export default function Post({
                             <div className={`${!isFullPost ? PostStyles['post-user'] : PostStyles['fullpost-user']}`}>Posted by {user.nickname} | <Moment format='DD.MM.YYYY HH:mm'>{createdAt}</Moment>
                             </div>
 
-                            {!isFullPost ?
-                                <>
-                                    <p className={`${PostStyles['post-descr']}`}>
-                                        <TextTruncate
-                                            line={1}
-                                            element="span"
-                                            truncateText='...'
-                                            text={text}
-                                        />
-                                    </p>
-                                </>
-                                :
-                                <>
-                                    <p className={`${PostStyles['full-descr']}`}>
-                                        {text}
-                                    </p>
-                                </>
-                            }
+                            {children && <div className={`${PostStyles['full-descr']}`}>{children}</div>}
                             <div className={PostStyles['post-footer']}>
                                 <div className={`${PostStyles['post-tags']}`}>
                                     {tags.map((name) => (
