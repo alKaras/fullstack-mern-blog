@@ -8,6 +8,8 @@ export default function Content() {
 
     const dispatch = useDispatch();
     const { posts } = useSelector((state) => state.posts);
+    const userData = useSelector((state) => state.logreg.user);
+
 
     const isPostsLoading = posts.status === 'loading';
 
@@ -35,7 +37,7 @@ export default function Content() {
                                     commentsCount={10}
                                     tags={obj.tags}
                                     isFullPost={false}
-                                    isAuthored={true}
+                                    isAuthored={userData?._id === obj.user._id}
                                 />
                             </Col>
                         )

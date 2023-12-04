@@ -28,6 +28,7 @@ export default function Post({
             document.title = 'Blog'
         }
     }, [title, isFullPost])
+    console.log(isAuthored);
     return (
         <>
             {isLoading ?
