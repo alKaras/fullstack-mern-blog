@@ -17,7 +17,7 @@ const getLastTags = async (req, res) => {
 
 const getAll = async (req, res) => {
     try {
-        const posts = await Post.find().populate('user').exec();
+        const posts = await Post.find().populate('user', 'nickname').exec();
         res.status(200).json(posts);
     } catch (error) {
         res.status(500).json({ message: "Не вдалось отримати статті" })
@@ -47,7 +47,7 @@ const getOne = async (req, res) => {
             {
                 returnDocument: 'after',
             }
-        ).populate('user');
+        ).populate('user', 'nickname');
 
         res.json(post);
     } catch (error) {

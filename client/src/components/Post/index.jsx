@@ -5,6 +5,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Moment from 'react-moment';
 import { useDispatch } from 'react-redux';
 import { fetchRemovedPost } from '../../redux/slices/postSlice';
+import CommentBlock from '../CommentBlock';
 export default function Post({
     _id,
     title,
@@ -14,6 +15,7 @@ export default function Post({
     text,
     viewsCount,
     commentsCount,
+    comments,
     tags,
     children,
     isFullPost,
@@ -117,7 +119,7 @@ export default function Post({
                             </div>
 
                             {children && <div className={`${PostStyles['full-descr']}`}>{children}</div>}
-                            <div className={PostStyles['post-footer']}>
+                            <div style={{ marginBottom: '25px' }} className={PostStyles['post-footer']}>
                                 <div className={`${PostStyles['post-tags']}`}>
                                     {tags.map((name) => (
                                         <small key={name} className={PostStyles['post-tag']}>{name}</small>
@@ -132,6 +134,17 @@ export default function Post({
                                     </small>
                                 </div>
                             </div>
+                            {comments
+
+                                ?
+                                <>
+                                    <CommentBlock coms={comments} />
+                                </>
+                                :
+                                <>
+
+                                </>
+                            }
                         </div>
                     </div >
                 </>

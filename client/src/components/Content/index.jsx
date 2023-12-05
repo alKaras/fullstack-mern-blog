@@ -15,7 +15,7 @@ export default function Content() {
 
     useEffect(() => {
         dispatch(fetchPosts());
-        
+
         if (isPostDeleted) {
             dispatch(fetchPosts());
         }
@@ -38,7 +38,7 @@ export default function Content() {
                                     text={obj.text}
                                     createdAt={obj.createdAt}
                                     viewsCount={obj.viewsCount}
-                                    commentsCount={10}
+                                    commentsCount={obj.commentsCount}
                                     tags={obj.tags}
                                     isFullPost={false}
                                     isAuthored={userData?._id === obj.user._id}
