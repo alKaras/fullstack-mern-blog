@@ -1,8 +1,8 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Header from '../../components/Header'
 import CreatePStyles from '../CreatePost/CreatePost.module.scss';
 import { Button, Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
@@ -18,6 +18,8 @@ export default function CreatePost() {
     const [tags, setTags] = useState('');
     const inputFileRef = useRef(null);
 
+    const { _id } = useParams();
+    const isEditing = Boolean(_id);
 
     const handleChangeFile = async (event) => {
         try {
@@ -46,9 +48,12 @@ export default function CreatePost() {
                 imageUrl,
                 tags
             }
-            const { data } = await axios.post('/posts/createPost', fields);
 
-            const id = data._id;
+            const { data } = isEditing
+                ? await axios.patch(`/posts/updatePost/${_id}`, fields)
+                : await axios.post('/posts/createPost', fields)
+
+            const id = isEditing ? _id : data._id;
             navigate(`/posts/${id}`)
         } catch (err) {
             console.warn(err);
@@ -59,6 +64,21 @@ export default function CreatePost() {
     const onChange = useCallback((value) => {
         setText(value);
     }, []);
+
+    useEffect(() => {
+        if (_id) {
+            axios.get(`/posts/getPost/${_id}`)
+                .then(({ data }) => {
+                    setTitle(data.title);
+                    setText(data.text);
+                    setImageUrl(data.imageUrl);
+                    setTags(data.tags.join(', '));
+                })
+                .catch(err => {
+                    console.warn(err);
+                })
+        }
+    }, [])
 
     const options = useMemo(
         () => ({
@@ -107,7 +127,7 @@ export default function CreatePost() {
                 />
                 <SimpleMDE className={`${CreatePStyles['editor']}`} value={text} onChange={onChange} options={options} />
                 <div className={`${CreatePStyles['buttons']}`}>
-                    <Button onClick={onSubmit} variant='success'>Опублікувати</Button>
+                    <Button onClick={onSubmit} variant='success'>{!isEditing ? 'Опублікувати' : 'Зберегти'}</Button>
                     <Link to={'/'}>
                         <Button variant='danger'>Відміна</Button>
                     </Link>

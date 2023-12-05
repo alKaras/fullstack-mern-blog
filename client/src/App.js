@@ -23,6 +23,7 @@ export default function App() {
                 <Route path='/sign-in' element={<SignIn />} />
                 <Route path='/posts/:_id' element={<FullPost />} />
                 <Route path='/create-post' element={<CreatePost />} />
+                <Route path='/posts/:_id/edit' element={<CreatePost />} />
             </Routes>
         </div>
     );

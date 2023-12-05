@@ -104,7 +104,7 @@ const updatePost = async (req, res) => {
                 text: req.body.text,
                 imageUrl: req.body.imageUrl,
                 user: req.user,
-                tags: req.body.tags,
+                tags: req.body.tags.split(', '),
             },
         );
 

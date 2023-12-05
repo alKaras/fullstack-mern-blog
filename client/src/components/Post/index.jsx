@@ -96,9 +96,11 @@ export default function Post({
                                     <>
                                         <div className={`${PostStyles['p-action']}`} >
                                             <div>
-                                                <button style={{ background: "orange" }} className={`${PostStyles['p-action-btn']}`}>
-                                                    <i className="fa-solid fa-pen"></i>
-                                                </button>
+                                                <Link to={`/posts/${_id}/edit`}>
+                                                    <button style={{ background: "orange" }} className={`${PostStyles['p-action-btn']}`}>
+                                                        <i className="fa-solid fa-pen"></i>
+                                                    </button>
+                                                </Link>
                                             </div>
                                             <div>
                                                 <button style={{ background: "red" }} onClick={onClickRemove} className={`${PostStyles['p-action-btn']}`}>
