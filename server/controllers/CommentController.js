@@ -4,9 +4,8 @@ const Post = require('../models/Post')
 const getByPostId = async (req, res) => {
     try {
         const postId = req.params.id;
-        const userId = req.user;
 
-        const comments = await Comment.find({ post: postId }).populate('user');
+        const comments = await Comment.find({ post: postId }).populate('user', 'nickname');
 
         res.status(200).json(comments);
 
@@ -27,8 +26,15 @@ const createComment = async (req, res) => {
     })
 
     await comment.save();
-    await comment.populate('user');
-    const post = await Post.findById(postId);
+    await comment.populate('user', 'nickname');
+    const post = await Post.findByIdAndUpdate(
+        {
+            _id: postId,
+        },
+        {
+            $inc: { commentsCount: 1 },
+        }
+    );
 
     if (!post) {
         res.status(404).json({ message: 'Статті не знайдено' });
