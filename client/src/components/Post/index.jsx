@@ -4,6 +4,7 @@ import PostStyles from '../Post/Post.module.scss';
 import Spinner from 'react-bootstrap/Spinner';
 import Moment from 'react-moment';
 import { useDispatch } from 'react-redux';
+import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from "react-share";
 import { fetchRemovedPost } from '../../redux/slices/postSlice';
 export default function Post({
     _id,
@@ -87,7 +88,23 @@ export default function Post({
                                     </>
                                     :
                                     <>
-                                        <div className={`${PostStyles['full-headtext']}`}>{title}</div>
+                                        <div className={`${PostStyles['share']}`}>
+                                            <div className={`${PostStyles['full-headtext']}`}>{title}</div>
+                                            <div className={`${PostStyles['share-btns']}`}>
+                                                <FacebookShareButton
+                                                    url='https://e-zoo.com.ua/ua/blog'
+
+                                                >
+                                                    <FacebookIcon size={35} round={true} />
+                                                </FacebookShareButton>
+                                                <TwitterShareButton
+                                                    url='https://e-zoo.com.ua/ua/blog'
+                                                >
+                                                    <TwitterIcon size={35} round={true} />
+                                                </TwitterShareButton>
+                                            </div>
+                                        </div>
+
                                     </>
                                 }
                                 {

@@ -148,6 +148,17 @@
         }
     }
 
+    .share {
+        display: flex;
+        align-items: center;
+    }
+
+    .share-btns{
+        margin-left: auto;
+        display: flex;
+        gap: 10px;
+    }
+
     .post-comments {
         margin-left: 20px;
     }
