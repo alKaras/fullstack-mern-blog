@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import ContentStyles from '../Content/Content.module.scss';
 import Post from '../Post';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts, infoAboutDeleted } from '../../redux/slices/postSlice';
+import { fetchPosts } from '../../redux/slices/postSlice';
 export default function Content() {
 
     const dispatch = useDispatch();

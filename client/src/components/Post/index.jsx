@@ -5,17 +5,14 @@ import Spinner from 'react-bootstrap/Spinner';
 import Moment from 'react-moment';
 import { useDispatch } from 'react-redux';
 import { fetchRemovedPost } from '../../redux/slices/postSlice';
-import CommentBlock from '../CommentBlock';
 export default function Post({
     _id,
     title,
     createdAt,
     imageUrl,
     user,
-    text,
     viewsCount,
     commentsCount,
-    comments,
     tags,
     children,
     isFullPost,
@@ -134,17 +131,6 @@ export default function Post({
                                     </small>
                                 </div>
                             </div>
-                            {comments
-
-                                ?
-                                <>
-                                    <CommentBlock coms={comments} />
-                                </>
-                                :
-                                <>
-
-                                </>
-                            }
                         </div>
                     </div >
                 </>
