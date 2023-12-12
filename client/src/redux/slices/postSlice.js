@@ -11,6 +11,11 @@ export const fetchRemovedPost = createAsyncThunk('posts/fetchRemovedPost', async
     return data;
 })
 
+export const fetchByTags = createAsyncThunk('posts/search', async (params) => {
+    const { data } = await axios.get(`/posts/search?values=${params}`);
+    return data;
+})
+
 const initialState = {
     posts: {
         items: [],
@@ -50,6 +55,21 @@ const postSlice = createSlice({
             .addCase(fetchRemovedPost.rejected, (state, action) => {
                 state.isLoading = 'loading'
                 state.posts.deletingStatus = 'error'
+                state.error = action.payload.message
+            })
+            .addCase(fetchByTags.pending, (state) => {
+                state.searchStatus = 'loading'
+                state.posts.items = []
+                state.error = null
+            })
+            .addCase(fetchByTags.fulfilled, (state, action) => {
+                state.searchStatus = 'loaded'
+                state.error = null
+                state.posts.items = action.payload;
+            })
+            .addCase(fetchByTags.rejected, (state, action) => {
+                state.searchStatus = 'loading'
+                state.posts.items = []
                 state.error = action.payload.message
             })
     }

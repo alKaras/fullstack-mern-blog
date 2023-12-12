@@ -1,0 +1,32 @@
+.root {
+    max-width: 1180px;
+    margin: 0 auto;
+    margin-top: 125px;
+    padding: 15px;
+    border-radius: 25px;
+
+    .search {
+        display: flex;
+    }
+
+    .search-btn {
+        padding: 8px 15px;
+        background-color: orange;
+        border: none;
+        color: black;
+        font-weight: bold;
+        margin-left: 15px;
+        border-radius: 15px;
+        font-size: 16px;
+    }
+
+    .search-form {
+        border: none;
+        width: 1050px;
+        font-size: 16px;
+    }
+
+    .search-form:focus {
+        box-shadow: none;
+    }
+}

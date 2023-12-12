@@ -24,6 +24,27 @@ const getAll = async (req, res) => {
     }
 }
 
+const getPostsByTags = async (req, res) => {
+    try {
+        const { values } = req.query;
+        const tagsArr = typeof values === 'string' ? values.split(', ').map(tag => tag.trim()) : [];
+        if (tagsArr.length < 2) {
+            const posts = await Post.find({ tags: { $in: values } })
+                .populate('user', 'nickname')
+                .exec();
+            res.status(200).json(posts);
+        } else if (tagsArr.length !== 0) {
+            const posts = await Post.find({ tags: { $all: tagsArr } })
+                .populate('user', 'nickname')
+                .exec();
+            res.status(200).json(posts);
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Something went wrong" });
+    }
+}
+
 const getMyPosts = async (req, res) => {
     try {
         const usid = req.user;
@@ -122,5 +143,6 @@ module.exports = {
     createPost,
     removePost,
     updatePost,
-    getMyPosts
+    getMyPosts,
+    getPostsByTags
 }
