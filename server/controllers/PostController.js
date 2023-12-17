@@ -8,7 +8,6 @@ const getLastTags = async (req, res) => {
             .map((obj) => obj.tags)
             .flat()
             .slice(0, 5);
-
         res.json(tags);
     } catch (error) {
         res.status(500).json({ message: 'Не вдалось отримати теги' })

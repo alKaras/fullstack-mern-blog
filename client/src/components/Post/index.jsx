@@ -6,6 +6,7 @@ import Moment from 'react-moment';
 import { useDispatch } from 'react-redux';
 import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from "react-share";
 import { fetchRemovedPost } from '../../redux/slices/postSlice';
+
 export default function Post({
     _id,
     title,
@@ -148,6 +149,12 @@ export default function Post({
                                     </small>
                                 </div>
                             </div>
+                            {isFullPost ?
+                                <div className={PostStyles['post-comments-section']}>
+                                    <div className={PostStyles['comment-form']}>
+                                        <textarea className={PostStyles['comment-editor']} cols="30" rows="10"></textarea>
+                                    </div>
+                                </div> : <></>}
                         </div>
                     </div >
                 </>
