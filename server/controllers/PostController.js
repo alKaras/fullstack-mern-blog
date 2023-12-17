@@ -14,6 +14,27 @@ const getLastTags = async (req, res) => {
     }
 }
 
+const getPopularTags = async (req, res) => {
+    try {
+        const popularTags = await Post.aggregate([
+            { $unwind: '$tags' },
+            {
+                $group: {
+                    _id: '$tags',
+                    viewsCount: { $sum: '$viewsCount' },
+                },
+            },
+            { $sort: { viewsCount: -1 } },
+            { $limit: 5 },
+        ]);
+
+        return popularTags;
+    } catch (error) {
+        console.error('Error retrieving popular tags:', error);
+        throw error;
+    }
+}
+
 const getAll = async (req, res) => {
     try {
         const posts = await Post.find().populate('user', 'nickname').exec();
@@ -143,5 +164,6 @@ module.exports = {
     removePost,
     updatePost,
     getMyPosts,
-    getPostsByTags
+    getPostsByTags,
+    getPopularTags
 }

@@ -12,5 +12,14 @@ router.delete('/removePost/:id', auth, PostController.removePost);
 router.get('/getUserPost', auth, PostController.getMyPosts);
 router.get('/search', PostController.getPostsByTags);
 router.get('/getTags', PostController.getLastTags);
+router.get('/getPopularTags', async (req, res) => {
+    try {
+        const popularTags = await PostController.getPopularTags();
+        res.status(200).json({ popularTags });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+})
 
 module.exports = router;

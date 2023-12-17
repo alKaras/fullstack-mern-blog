@@ -24,10 +24,10 @@ export default function Content() {
         if (isPostDeleted) {
             dispatch(fetchPosts());
         }
-        axios.get('/posts/getTags')
+        axios.get('/posts/getPopularTags')
             .then((res) => {
-                console.log(res.data)
-                setMVtags(res.data);
+                console.log(res.data.popularTags)
+                setMVtags(res.data.popularTags);
             })
             .catch((err) => console.warn(err))
     }, [dispatch, isPostDeleted])
@@ -72,7 +72,7 @@ export default function Content() {
                 <div className={SearchStyle['most-viewed-tags']}>
                     <p style={{margin: '0px'}}>Популярні теги</p>
                     {MVtags.map((name, index) => (
-                        <small className={SearchStyle['viewed-tags-items']} key={index - 1}>{name}</small>
+                        <small className={SearchStyle['viewed-tags-items']} key={index}>{name._id}</small>
                     ))}
                 </div>
             </div>
