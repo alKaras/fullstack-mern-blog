@@ -5,12 +5,13 @@ import Post from '../Post';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchByTags, fetchPosts } from '../../redux/slices/postSlice';
 import { Button, Form } from 'react-bootstrap';
-import SearchStyle from '../Search/Search.module.scss'
-// import Search from '../Search';
+import SearchStyle from '../Content/Search.module.scss'
+import axios from '../../utils/axios';
 export default function Content() {
 
     const dispatch = useDispatch();
     const { posts } = useSelector((state) => state.posts);
+    const [MVtags, setMVtags] = useState([]);
     const userData = useSelector((state) => state.logreg.user);
     const isPostDeleted = useSelector((state) => state.posts.posts.deletingStatus === 'done');
     const [TagsValues, setTagsValues] = useState('');
@@ -23,6 +24,12 @@ export default function Content() {
         if (isPostDeleted) {
             dispatch(fetchPosts());
         }
+        axios.get('/posts/getTags')
+            .then((res) => {
+                console.log(res.data)
+                setMVtags(res.data);
+            })
+            .catch((err) => console.warn(err))
     }, [dispatch, isPostDeleted])
 
     const onClickSearch = () => {
@@ -41,7 +48,7 @@ export default function Content() {
     }
 
     const handleKeyDown = (e) => {
-        if (e.key === 'Enter'){
+        if (e.key === 'Enter') {
             e.preventDefault();
         }
     }
@@ -61,6 +68,12 @@ export default function Content() {
                         />
                     </Form>
                     <Button onClick={onClickSearch} className={`${SearchStyle['search-btn']}`}>Знайти</Button>
+                </div>
+                <div className={SearchStyle['most-viewed-tags']}>
+                    <p style={{margin: '0px'}}>Популярні теги</p>
+                    {MVtags.map((name) => (
+                        <small className={SearchStyle['viewed-tags-items']} key={name - 1}>{name}</small>
+                    ))}
                 </div>
             </div>
             <div className={ContentStyles.root}>

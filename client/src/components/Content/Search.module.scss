@@ -29,4 +29,17 @@
     .search-form:focus {
         box-shadow: none;
     }
+
+    .most-viewed-tags {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .viewed-tags-items {
+        background: rgba($color: gray, $alpha: 0.3);
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
 }
