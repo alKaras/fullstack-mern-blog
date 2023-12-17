@@ -4,6 +4,7 @@ import Header from '../../components/Header'
 import { useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import axios from '../../utils/axios'
+import CommentBlock from '../../components/CommentBlock'
 
 export default function FullPost() {
     const { _id } = useParams();
@@ -24,6 +25,7 @@ export default function FullPost() {
     if (isLoading) {
         return <Post isLoading={isLoading} isFullPost={true} />;
     }
+   
 
     return (
         <>
@@ -40,7 +42,9 @@ export default function FullPost() {
                 isFullPost={true}
             >
                 <Markdown>{data.text}</Markdown>
+                
             </Post>
+            <CommentBlock postId={_id} />
         </>
     )
 }

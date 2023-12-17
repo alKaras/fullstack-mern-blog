@@ -97,7 +97,9 @@
     border-radius: 15px;
 
     max-width: 1140px;
-    margin: 100px auto;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 5px;
     padding: 25px;
 
     .fullpost-img {
@@ -153,7 +155,7 @@
         align-items: center;
     }
 
-    .share-btns{
+    .share-btns {
         margin-left: auto;
         display: flex;
         gap: 10px;

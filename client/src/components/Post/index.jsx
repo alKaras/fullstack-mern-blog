@@ -149,12 +149,6 @@ export default function Post({
                                     </small>
                                 </div>
                             </div>
-                            {isFullPost ?
-                                <div className={PostStyles['post-comments-section']}>
-                                    <div className={PostStyles['comment-form']}>
-                                        <textarea className={PostStyles['comment-editor']} cols="30" rows="10"></textarea>
-                                    </div>
-                                </div> : <></>}
                         </div>
                     </div >
                 </>

@@ -20,7 +20,7 @@ const createComment = async (req, res) => {
     const user = req.user;
 
     const comment = new Comment({
-        body,
+        body: body,
         post: postId,
         user: user
     })

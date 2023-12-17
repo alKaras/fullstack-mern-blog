@@ -19,7 +19,6 @@ export const fetchByTags = createAsyncThunk('posts/search', async (params) => {
 const initialState = {
     posts: {
         items: [],
-        tags: null,
         deletingStatus: 'process',
         isloading: 'loading',
     }
