@@ -71,8 +71,8 @@ export default function Content() {
                 </div>
                 <div className={SearchStyle['most-viewed-tags']}>
                     <p style={{margin: '0px'}}>Популярні теги</p>
-                    {MVtags.map((name) => (
-                        <small className={SearchStyle['viewed-tags-items']} key={name - 1}>{name}</small>
+                    {MVtags.map((name, index) => (
+                        <small className={SearchStyle['viewed-tags-items']} key={index - 1}>{name}</small>
                     ))}
                 </div>
             </div>

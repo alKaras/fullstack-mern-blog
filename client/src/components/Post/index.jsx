@@ -136,8 +136,8 @@ export default function Post({
                             {children && <div className={`${PostStyles['full-descr']}`}>{children}</div>}
                             <div style={{ marginBottom: '25px' }} className={PostStyles['post-footer']}>
                                 <div className={`${PostStyles['post-tags']}`}>
-                                    {tags.map((name) => (
-                                        <small key={name} className={PostStyles['post-tag']}>{name}</small>
+                                    {tags.map((name, index) => (
+                                        <small key={index} className={PostStyles['post-tag']}>{name}</small>
                                     ))}
                                 </div>
                                 <div>
