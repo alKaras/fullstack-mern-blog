@@ -146,6 +146,7 @@ export default function Post({
                                         <small key={index} className={PostStyles['post-tag']}>{name}</small>
                                     ))}
                                 </div>
+
                                 <div>
                                     <small>
                                         <i className="fa-regular fa-eye"></i> {viewsCount}
@@ -154,6 +155,7 @@ export default function Post({
                                         <i className="fa-solid fa-comment"></i> {commentsCount}
                                     </small>
                                 </div>
+
                             </div>
                         </div>
                     </div >

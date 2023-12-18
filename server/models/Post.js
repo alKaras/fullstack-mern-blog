@@ -12,8 +12,7 @@ const PostSchema = new mongoose.Schema(
             unique: true,
         },
         category: {
-            type: String,
-            required: true
+            type: String
         },
         tags: {
             type: Array,

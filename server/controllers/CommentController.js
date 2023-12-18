@@ -25,16 +25,21 @@ const createComment = async (req, res) => {
         user: user
     })
 
-    await comment.save();
-    await comment.populate('user', 'nickname');
     const post = await Post.findByIdAndUpdate(
         {
             _id: postId,
         },
         {
             $inc: { commentsCount: 1 },
+        },
+        {
+            returnDocument: 'before',
         }
     );
+
+    await comment.save();
+    await comment.populate('user', 'nickname');
+    
 
     if (!post) {
         res.status(404).json({ message: 'Статті не знайдено' });
