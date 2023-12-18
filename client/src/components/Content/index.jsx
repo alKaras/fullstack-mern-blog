@@ -43,8 +43,14 @@ export default function Content() {
 
         dispatch(fetchByTags(TagsValues))
             .then(() => {
-                setTagsValues('');
+                // setTagsValues('');
             })
+    }
+
+    const onClickClearForm = (e) => {
+        e.preventDefault();
+        setTagsValues('');
+        dispatch(fetchPosts());
     }
 
     const handleKeyDown = (e) => {
@@ -67,6 +73,7 @@ export default function Content() {
                             onKeyDown={handleKeyDown}
                         />
                     </Form>
+                    <button onClick={onClickClearForm} style={{background: 'none'}}><i class="fa-solid fa-x"></i></button>
                     <Button onClick={onClickSearch} className={`${SearchStyle['search-btn']}`}>Знайти</Button>
                 </div>
                 <div className={SearchStyle['most-viewed-tags']}>

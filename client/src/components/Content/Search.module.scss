@@ -7,6 +7,7 @@
 
     .search {
         display: flex;
+        justify-content: space-between;
     }
 
     .search-btn {
@@ -22,7 +23,7 @@
 
     .search-form {
         border: none;
-        width: 1050px;
+        width: 1000px;
         font-size: 16px;
     }
 
