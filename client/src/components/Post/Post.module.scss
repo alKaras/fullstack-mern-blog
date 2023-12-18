@@ -91,6 +91,10 @@
         padding: 10px;
         border-radius: 50%;
     }
+    .post-category {
+        font-size: 16px;
+        color: rgba($color: #000000, $alpha: 0.5);
+    }
 }
 
 .fullpost {
@@ -101,6 +105,11 @@
     margin-top: 100px;
     margin-bottom: 5px;
     padding: 25px;
+
+    .post-category {
+        font-size: 16px;
+        color: rgba($color: #000000, $alpha: 0.5);
+    }
 
     .fullpost-img {
         overflow: hidden;

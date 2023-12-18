@@ -83,14 +83,20 @@ export default function Post({
                             <div className={`${PostStyles['title-wrapper']}`}>
                                 {!isFullPost ?
                                     <>
+
                                         <Link style={{ cursor: 'pointer' }} to={`/posts/${_id}`}>
-                                            <div className={`${PostStyles['post-headtext']}`}>{title}</div>
+                                            <div className={`${PostStyles['post-headtext']}`}>
+                                                {title}
+
+                                            </div>
                                         </Link>
                                     </>
                                     :
                                     <>
                                         <div className={`${PostStyles['share']}`}>
-                                            <div className={`${PostStyles['full-headtext']}`}>{title}</div>
+                                            <div className={`${PostStyles['full-headtext']}`}>
+                                                {title}
+                                            </div>
                                             <div className={`${PostStyles['share-btns']}`}>
                                                 <FacebookShareButton
                                                     url='https://e-zoo.com.ua/ua/blog'

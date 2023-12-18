@@ -9,6 +9,7 @@ const app = express();
 const UserRouter = require('./router/userRouter');
 const PostRouter = require('./router/postRouter');
 const CommentRouter = require('./router/commentRouter');
+const CategoryRouter = require('./router/categoryRouter');
 
 const storage = multer.diskStorage({
     destination: (_, __, cb) => {
@@ -49,7 +50,7 @@ app.post('/api/v1/uploads', auth, upload.single('image'), (req, res) => {
 app.use('/api/v1/uploads', express.static('uploads'));
 app.use('/api/v1/posts', PostRouter);
 app.use('/api/v1/comments', CommentRouter);
-
+app.use('/api/v1/category', CategoryRouter);
 app.listen(config.host.PORT, () => {
     console.log("Server is started successfuly");
 });

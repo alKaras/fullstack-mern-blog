@@ -16,6 +16,7 @@ export default function CreatePost() {
     const [text, setText] = useState('');
     const [title, setTitle] = useState('');
     const [tags, setTags] = useState('');
+    const [category, setCategory] = useState('');
     const inputFileRef = useRef(null);
 
     const { _id } = useParams();
@@ -46,6 +47,7 @@ export default function CreatePost() {
                 title,
                 text,
                 imageUrl,
+                category,
                 tags
             }
 
@@ -72,6 +74,7 @@ export default function CreatePost() {
                     setTitle(data.title);
                     setText(data.text);
                     setImageUrl(data.imageUrl);
+                    setCategory(data.category);
                     setTags(data.tags.join(', '));
                 })
                 .catch(err => {
@@ -125,6 +128,12 @@ export default function CreatePost() {
                     value={tags}
                     onChange={e => setTags(e.target.value)}
                 />
+                <Form.Select onChange={e => setCategory(e.target.value)} placeholder='Виберіть категорію статті'>
+                    <option value="news">Новини</option>
+                    <option value="products">Товари</option>
+                    <option value="care tips">Поради</option>
+                    <option value="funny stories">Цікаві історії</option>
+                </Form.Select>
                 <SimpleMDE className={`${CreatePStyles['editor']}`} value={text} onChange={onChange} options={options} />
                 <div className={`${CreatePStyles['buttons']}`}>
                     <Button onClick={onSubmit} variant='success'>{!isEditing ? 'Опублікувати' : 'Зберегти'}</Button>

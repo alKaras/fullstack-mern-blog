@@ -103,6 +103,7 @@ const createPost = async (req, res) => {
             title: req.body.title,
             text: req.body.text,
             imageUrl: req.body.imageUrl,
+            category: req.body.category,
             tags: req.body.tags.split(', '),
             user: req.user
         });
