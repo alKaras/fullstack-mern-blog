@@ -146,15 +146,27 @@ export default function Post({
                                         <small key={index} className={PostStyles['post-tag']}>{name}</small>
                                     ))}
                                 </div>
+                                {isFullPost ?
+                                    <>
+                                        <div>
+                                            <small>
+                                                <i className="fa-regular fa-eye"></i> {viewsCount}
+                                            </small>
+                                        </div>
 
-                                <div>
-                                    <small>
-                                        <i className="fa-regular fa-eye"></i> {viewsCount}
-                                    </small>
-                                    <small className={PostStyles['post-comments']}>
-                                        <i className="fa-solid fa-comment"></i> {commentsCount}
-                                    </small>
-                                </div>
+                                    </>
+                                    :
+                                    <>
+                                        <div>
+                                            <small>
+                                                <i className="fa-regular fa-eye"></i> {viewsCount}
+                                            </small>
+                                            <small className={PostStyles['post-comments']}>
+                                                <i className="fa-solid fa-comment"></i> {commentsCount}
+                                            </small>
+                                        </div>
+                                    </>
+                                }
 
                             </div>
                         </div>

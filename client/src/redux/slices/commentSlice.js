@@ -11,9 +11,15 @@ export const createComment = createAsyncThunk('/comments/createComment', async (
     return data;
 })
 
+export const fetchAmountComments = createAsyncThunk('/comments/getAmoynt', async (id) => {
+    const { data } = await axios.get(`/comments/${id}/getAmount`);
+    return data;
+})
+
 const initialState = {
     comments: {
         items: [],
+        amountById: 0,
         isLoading: 'loading',
         isSendItem: 'none'
     }
@@ -49,6 +55,18 @@ const commentsSlice = createSlice({
                 state.comments.isLoading = 'error'
                 state.comments.isSendItem = 'error'
             })
+            .addCase(fetchAmountComments.pending, (state) => {
+                state.comments.isLoading = 'loading'
+                state.comments.amountById = 0
+            })
+            .addCase(fetchAmountComments.fulfilled, (state, action) => {
+                state.comments.isLoading = 'loaded'
+                state.comments.amountById = action.payload.amount;
+            })
+            .addCase(fetchAmountComments.rejected, (state) => {
+                state.comments.isLoading = 'error'
+            })
+            
     }
 })
 

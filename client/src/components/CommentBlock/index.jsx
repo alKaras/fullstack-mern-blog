@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import CommentStyle from '../CommentBlock/Comment.module.scss'
 import axios from '../../utils/axios'
-import { Form } from 'react-bootstrap';
+import { Accordion, Form } from 'react-bootstrap';
 import Moment from 'react-moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLogged } from '../../redux/slices/authSlice';
-import { fetchComments } from '../../redux/slices/commentSlice';
+import { fetchAmountComments, fetchComments } from '../../redux/slices/commentSlice';
 export default function CommentBlock({ postId }) {
     const [body, setBody] = useState('');
     const dispatch = useDispatch();
@@ -13,10 +13,18 @@ export default function CommentBlock({ postId }) {
     const { comments } = useSelector((state) => state.comments);
     const isCommentExist = comments.status === 'loading';
     const [IsSend, setIsSend] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const isLogged = useSelector(selectIsLogged);
 
     const onClickSend = async (e) => {
         e.preventDefault();
+        if (!body.trim()) {
+            setErrorMessage('Поле коментарі не може бути пустим');
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 1000);
+            return;
+        }
         try {
             await axios.post(`/comments/${postId}/createComment`, { body })
                 .then((res) => {
@@ -35,8 +43,10 @@ export default function CommentBlock({ postId }) {
 
     useEffect(() => {
         dispatch(fetchComments(postId));
+        dispatch(fetchAmountComments(postId));
         if (IsSend) {
             dispatch(fetchComments(postId));
+            dispatch(fetchAmountComments(postId));
             setIsSend(false);
         }
     }, [dispatch, IsSend])
@@ -46,6 +56,7 @@ export default function CommentBlock({ postId }) {
                 <div className={CommentStyle['comment-form']}>
                     {isLogged ?
                         <>
+
                             <Form.Control
                                 as="textarea"
                                 rows={3}
@@ -65,9 +76,11 @@ export default function CommentBlock({ postId }) {
                     }
 
                 </div>
-                <div className={CommentStyle['post-comment-content-container']}>
-                    <div className={CommentStyle['post-comment-content-title']}>Всі коментарі</div>
-                    <div className={CommentStyle['post-comment-content']}>
+                {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+                <Accordion className={CommentStyle['post-comment-content-container']}>
+                    <Accordion.Header className={CommentStyle['post-comment-content-title']}>
+                        Всі коментарі ({comments.amountById})</Accordion.Header>
+                    <Accordion.Body className={CommentStyle['post-comment-content']}>
                         {!isCommentExist ? comments.items.map((obj, index) => (
                             <li style={{ marginBottom: '15px' }} key={index}>
                                 <div className={CommentStyle['post-comment-title-wrapper']}>
@@ -83,8 +96,8 @@ export default function CommentBlock({ postId }) {
                         ))
                             : <></>
                         }
-                    </div>
-                </div>
+                    </Accordion.Body>
+                </Accordion>
             </div>
         </div>
     )

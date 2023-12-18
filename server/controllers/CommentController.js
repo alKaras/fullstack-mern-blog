@@ -14,6 +14,16 @@ const getByPostId = async (req, res) => {
     }
 }
 
+const getAmountComments = async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const amountComments = await Comment.countDocuments({post: postId });
+        res.status(200).json({ amount: amountComments })
+    } catch (error) {
+        res.status(404).json({})
+    }
+}
+
 const createComment = async (req, res) => {
     const postId = req.params.id;
     const { body } = req.body;
@@ -39,7 +49,7 @@ const createComment = async (req, res) => {
 
     await comment.save();
     await comment.populate('user', 'nickname');
-    
+
 
     if (!post) {
         res.status(404).json({ message: 'Статті не знайдено' });
@@ -53,5 +63,6 @@ const createComment = async (req, res) => {
 
 module.exports = {
     getByPostId,
-    createComment
+    createComment,
+    getAmountComments
 }

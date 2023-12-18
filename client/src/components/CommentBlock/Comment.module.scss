@@ -37,6 +37,10 @@
     .post-comment-content-container {
         margin-top: 25px;
         margin-bottom: 25px;
+
+        &:focus {
+            outline: none;
+        }
     }
 
     .post-comment-content-title {

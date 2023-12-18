@@ -3,17 +3,15 @@ import Post from '../../components/Post'
 import Header from '../../components/Header'
 import { useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
+import ScrollBackToTop from '../../components/Other/ScrollToTop'
 import axios from '../../utils/axios'
 import CommentBlock from '../../components/CommentBlock'
-import { useSelector } from 'react-redux'
-import { selectIsSend } from '../../redux/slices/commentSlice'
 
 export default function FullPost() {
     const { _id } = useParams();
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
-    const isSend = useSelector(selectIsSend);
-    console.log(isSend);
+
     useEffect(() => {
         axios.get(`/posts/getPost/${_id}`)
             .then((res) => {
@@ -24,17 +22,6 @@ export default function FullPost() {
                 console.warn(err);
                 alert('Помилка отримання статті');
             });
-        if (isSend) {
-            axios.get(`/posts/getPost/${_id}`)
-                .then((res) => {
-                    setData(res.data);
-                    setIsLoading(false);
-                })
-                .catch((err) => {
-                    console.warn(err);
-                    alert('Помилка отримання статті');
-                });
-        }
     }, [])
 
     if (isLoading) {
@@ -60,6 +47,8 @@ export default function FullPost() {
 
             </Post>
             <CommentBlock postId={_id} />
+            <ScrollBackToTop />
+            
         </>
     )
 }
