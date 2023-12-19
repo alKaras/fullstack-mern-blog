@@ -1,19 +1,5 @@
 const Post = require('../models/Post')
 
-const getLastTags = async (req, res) => {
-    try {
-        const posts = await Post.find().limit(5).exec();
-
-        const tags = posts
-            .map((obj) => obj.tags)
-            .flat()
-            .slice(0, 5);
-        res.json(tags);
-    } catch (error) {
-        res.status(500).json({ message: 'Не вдалось отримати теги' })
-    }
-}
-
 const getPopularTags = async (req, res) => {
     try {
         const popularTags = await Post.aggregate([
@@ -158,7 +144,6 @@ const updatePost = async (req, res) => {
 }
 
 module.exports = {
-    getLastTags,
     getOne,
     getAll,
     createPost,
