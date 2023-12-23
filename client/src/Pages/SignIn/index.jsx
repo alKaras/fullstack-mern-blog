@@ -53,7 +53,7 @@ export default function SignIn() {
         <div className={`${SignInStyles.login}`}>
             <form className={`${SignInStyles['login-form']}`} onSubmit={handleSubmit(onSubmit)}>
                 <div className={`${SignInStyles['auth-form-content']}`}>
-                    <h3 className={`${SignInStyles['auth-form-title']}`}>Вхід у кабінет</h3>
+                    <h3 className={`${SignInStyles['auth-form-title']}`}>Увійти</h3>
                     <div className="d-flex flex-column">
                         <label>Пошта</label>
                         <input
@@ -75,9 +75,9 @@ export default function SignIn() {
 
                         {errors.password && <div className={`${SignInStyles['error-style']}`}>{errors.password.message}</div>}
                         <button onClick={togglePass} className={`${SignInStyles['btn-show']}`}>
-                            Згадати пароль
-                            {!isShowed ? <><i style={{marginLeft: '5px'}} className={`fa-regular fa-eye`}></i></>
-                                : <><i style={{marginLeft: '3px'}} className="fa-regular fa-eye-slash"></i></>}
+                            Показати 
+                            {!isShowed ? <><i style={{marginLeft: '20px'}} className={`fa-regular fa-eye`}></i></>
+                                : <><i style={{marginLeft: '20px'}} className="fa-regular fa-eye-slash"></i></>}
                         </button>
 
                     </div>

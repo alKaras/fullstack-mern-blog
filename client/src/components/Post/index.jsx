@@ -25,7 +25,7 @@ export default function Post({
     const dispatch = useDispatch();
 
     const onClickRemove = () => {
-        if (window.confirm("Ви хочете видалити статтю?")) {
+        if (window.confirm("Ви точно хочете видалити статтю?")) {
             dispatch(fetchRemovedPost(_id));
         }
     }
@@ -36,7 +36,7 @@ export default function Post({
         }
 
         return () => {
-            document.title = 'Blog'
+            document.title = 'Лапи та вуса'
         }
     }, [title, isFullPost])
     return (
@@ -53,7 +53,7 @@ export default function Post({
                             <>
                                 <div className={`breadcr`}>
                                     <Link to={'/'}>
-                                        Home
+                                        Головна
                                     </Link>
                                     <span> / </span><span> {title}</span>
                                 </div>

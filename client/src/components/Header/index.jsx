@@ -27,7 +27,7 @@ export default function Header() {
                         width={50}
                         height={50}
                         className='align-middle' />
-                    <p className={headerStyles['brand-text']}>Blog</p>
+                    <p className={headerStyles['brand-text']}>Лапи та вуса</p>
                 </Navbar.Brand>
             </LinkContainer>
             {!isLogged ? (
