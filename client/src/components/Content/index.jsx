@@ -67,7 +67,17 @@ export default function Content() {
     const onClickClearForm = (e) => {
         e.preventDefault();
         setTagsValues('');
-        dispatch(fetchPosts());
+        if (isNewsPage) {
+            dispatch(fetchByCategory("news"));
+        } else if (isProductsPage) {
+            dispatch(fetchByCategory("products"));
+        } else if (isFunnyStories) {
+            dispatch(fetchByCategory("funny stories"));
+        } else if (isCareTips) {
+            dispatch(fetchByCategory("care tips"));
+        } else {
+            dispatch(fetchPosts());
+        }
     }
 
     const handleKeyDown = (e) => {
