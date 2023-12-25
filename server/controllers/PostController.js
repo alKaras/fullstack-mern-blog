@@ -131,6 +131,7 @@ const updatePost = async (req, res) => {
                 title: req.body.title,
                 text: req.body.text,
                 imageUrl: req.body.imageUrl,
+                category: req.body.category,
                 user: req.user,
                 tags: req.body.tags.split(', '),
             },
@@ -143,6 +144,19 @@ const updatePost = async (req, res) => {
     }
 }
 
+const getPostsByCategory = async (req, res) => {
+    try {
+        const category = req.params.category;
+        const postsByCategory = await Post.find({ category: category })
+
+        res.status(200).json(postsByCategory);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json * ({ message: "Не вдалось знайти статті за цією категорією" })
+    }
+
+}
+
 module.exports = {
     getOne,
     getAll,
@@ -151,5 +165,6 @@ module.exports = {
     updatePost,
     getMyPosts,
     getPostsByTags,
-    getPopularTags
+    getPopularTags,
+    getPostsByCategory,
 }

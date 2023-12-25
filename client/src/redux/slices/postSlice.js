@@ -15,7 +15,9 @@ export const fetchByTags = createAsyncThunk('posts/search', async (params) => {
     const { data } = await axios.get(`/posts/search?values=${params}`);
     return data;
 })
-
+export const fetchByCategory = createAsyncThunk('posts/getByCategory', async (param) => {
+    const {data} = await axios.get(``)
+})
 const initialState = {
     posts: {
         items: [],

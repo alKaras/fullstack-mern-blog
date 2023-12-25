@@ -19,5 +19,6 @@ router.get('/getPopularTags', async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 })
+router.get('/getPostsByCategory/:category', PostController.getPostsByCategory);
 
 module.exports = router;

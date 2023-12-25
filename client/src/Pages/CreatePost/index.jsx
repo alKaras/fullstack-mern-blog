@@ -129,6 +129,7 @@ export default function CreatePost() {
                     onChange={e => setTags(e.target.value)}
                 />
                 <Form.Select onChange={e => setCategory(e.target.value)} placeholder='Виберіть категорію статті'>
+                    <option value=""></option>
                     <option value="news">Новини</option>
                     <option value="products">Товари</option>
                     <option value="care tips">Поради</option>

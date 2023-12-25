@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import headerStyles from '../Header/Header.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { infoAboutUser, logout, selectIsLogged } from '../../redux/slices/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const isLogged = useSelector(selectIsLogged);
@@ -30,20 +30,33 @@ export default function Header() {
                     <p className={headerStyles['brand-text']}>Лапи та вуса</p>
                 </Navbar.Brand>
             </LinkContainer>
-            {!isLogged ? (
-                <>
-                    <Nav>
+            <Nav>
+                <div className={headerStyles['menu-header']}>
+                    <LinkContainer to={'/news'}>
+                        <Button className={headerStyles['btn-header']}>Новини</Button>
+                    </LinkContainer>
+                    <LinkContainer to={'/goods'}>
+                        <Button className={headerStyles['btn-header']}>Товари</Button>
+                    </LinkContainer>
+                    <LinkContainer to={'/care-tips'}>
+                        <Button className={headerStyles['btn-header']}>Догляд</Button>
+                    </LinkContainer>
+                    <LinkContainer to={'/funny-stories'}>
+                        <Button className={headerStyles['btn-header']}>Цікаві історії</Button>
+                    </LinkContainer>
+                </div>
+                {!isLogged ? (
+                    <>
                         <LinkContainer to={'/sign-in'}>
                             <Button className={headerStyles['btn-join']}>Увійти</Button>
                         </LinkContainer>
                         <LinkContainer to={'/sign-up'}>
                             <Button className={headerStyles['btn-join']}>Створити акаунт</Button>
                         </LinkContainer>
-                    </Nav>
-                </>
-            ) :
-                <>
-                    <Nav>
+                    </>
+                ) :
+                    <>
+
                         <Dropdown align="end">
                             <Dropdown.Toggle className={` ${headerStyles['profile']} shadow-sm rounded d-flex align-items-center justify-content-center`}>
                                 <h1 className='mb-0 me-1'>{user.nickname}</h1>
@@ -55,9 +68,10 @@ export default function Header() {
                                 <Dropdown.Item onClick={logOutHandler} className={`${headerStyles['drop-link']}`}>Вийти</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                    </Nav>
-                </>
-            }
+
+                    </>
+                }
+            </Nav>
         </Navbar >
     )
 }
