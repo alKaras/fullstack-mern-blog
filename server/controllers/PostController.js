@@ -147,7 +147,7 @@ const updatePost = async (req, res) => {
 const getPostsByCategory = async (req, res) => {
     try {
         const category = req.params.category;
-        const postsByCategory = await Post.find({ category: category })
+        const postsByCategory = await Post.find({ category: category }).populate('user', 'nickname')
 
         res.status(200).json(postsByCategory);
     } catch (error) {

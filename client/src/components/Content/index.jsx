@@ -40,7 +40,17 @@ export default function Content() {
         }
 
         if (isPostDeleted) {
-            dispatch(fetchPosts());
+            if (isNewsPage) {
+                dispatch(fetchByCategory("news"));
+            } else if (isProductsPage) {
+                dispatch(fetchByCategory("products"));
+            } else if (isFunnyStories) {
+                dispatch(fetchByCategory("funny stories"));
+            } else if (isCareTips) {
+                dispatch(fetchByCategory("care tips"));
+            } else {
+                dispatch(fetchPosts());
+            }
         }
         axios.get('/posts/getPopularTags')
             .then((res) => {
@@ -55,7 +65,17 @@ export default function Content() {
 
         if (isInvalid.length > 0) {
             window.alert('Помилка пошуку постів');
-            dispatch(fetchPosts())
+            if (isNewsPage) {
+                dispatch(fetchByCategory("news"));
+            } else if (isProductsPage) {
+                dispatch(fetchByCategory("products"));
+            } else if (isFunnyStories) {
+                dispatch(fetchByCategory("funny stories"));
+            } else if (isCareTips) {
+                dispatch(fetchByCategory("care tips"));
+            } else {
+                dispatch(fetchPosts());
+            }
         }
 
         dispatch(fetchByTags(TagsValues))
