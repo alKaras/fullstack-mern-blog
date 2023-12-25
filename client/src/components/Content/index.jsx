@@ -3,14 +3,21 @@ import { Row, Col } from 'react-bootstrap'
 import ContentStyles from '../Content/Content.module.scss';
 import Post from '../Post';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchByTags, fetchPosts } from '../../redux/slices/postSlice';
+import { fetchByCategory, fetchByTags, fetchPosts } from '../../redux/slices/postSlice';
 import { Button, Form } from 'react-bootstrap';
 import SearchStyle from '../Content/Search.module.scss'
 import axios from '../../utils/axios';
+import { useLocation } from 'react-router-dom';
 export default function Content() {
 
     const dispatch = useDispatch();
     const { posts } = useSelector((state) => state.posts);
+    const location = useLocation();
+    const isNewsPage = (location.pathname === '/news');
+    const isFunnyStories = (location.pathname === '/funny-stories');
+    const isProductsPage = (location.pathname === '/goods');
+    const isCareTips = (location.pathname === '/care-tips');
+
     const [MVtags, setMVtags] = useState([]);
     const userData = useSelector((state) => state.logreg.user);
     const isPostDeleted = useSelector((state) => state.posts.posts.deletingStatus === 'done');
@@ -19,18 +26,28 @@ export default function Content() {
     const isPostsLoading = posts.status === 'loading';
 
     useEffect(() => {
-        dispatch(fetchPosts());
+
+        if (isNewsPage) {
+            dispatch(fetchByCategory("news"));
+        } else if (isProductsPage) {
+            dispatch(fetchByCategory("products"));
+        } else if (isFunnyStories) {
+            dispatch(fetchByCategory("funny stories"));
+        } else if (isCareTips) {
+            dispatch(fetchByCategory("care tips"));
+        } else {
+            dispatch(fetchPosts());
+        }
 
         if (isPostDeleted) {
             dispatch(fetchPosts());
         }
         axios.get('/posts/getPopularTags')
             .then((res) => {
-                console.log(res.data.popularTags)
                 setMVtags(res.data.popularTags);
             })
             .catch((err) => console.warn(err))
-    }, [dispatch, isPostDeleted])
+    }, [dispatch, isPostDeleted, isCareTips, isFunnyStories, isNewsPage, isProductsPage])
 
     const onClickSearch = () => {
         const tags = TagsValues.split(', ').map(tag => tag.trim());
@@ -73,11 +90,12 @@ export default function Content() {
                             onKeyDown={handleKeyDown}
                         />
                     </Form>
-                    <button onClick={onClickClearForm} style={{background: 'none'}}><i class="fa-solid fa-x"></i></button>
+                    <button onClick={onClickClearForm} style={{ background: 'none' }}><i class="fa-solid fa-x"></i></button>
                     <Button onClick={onClickSearch} className={`${SearchStyle['search-btn']}`}>Знайти</Button>
                 </div>
+
                 <div className={SearchStyle['most-viewed-tags']}>
-                    <p style={{margin: '0px'}}>Популярні теги</p>
+                    <p style={{ margin: '0px' }}>Популярні теги</p>
                     {MVtags.map((name, index) => (
                         <small className={SearchStyle['viewed-tags-items']} key={index}>{name._id}</small>
                     ))}

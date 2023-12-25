@@ -15,8 +15,9 @@ export const fetchByTags = createAsyncThunk('posts/search', async (params) => {
     const { data } = await axios.get(`/posts/search?values=${params}`);
     return data;
 })
-export const fetchByCategory = createAsyncThunk('posts/getByCategory', async (param) => {
-    const {data} = await axios.get(``)
+export const fetchByCategory = createAsyncThunk('posts/getByCategory', async (params) => {
+    const { data } = await axios.get(`/posts/getPostsByCategory/${params}`)
+    return data;
 })
 const initialState = {
     posts: {
@@ -70,6 +71,22 @@ const postSlice = createSlice({
                 state.posts.items = action.payload;
             })
             .addCase(fetchByTags.rejected, (state, action) => {
+                state.searchStatus = 'loading'
+                state.posts.items = []
+                state.error = action.payload.message
+            })
+            
+            .addCase(fetchByCategory.pending, (state) => {
+                state.searchStatus = 'loading'
+                state.posts.items = []
+                state.error = null
+            })
+            .addCase(fetchByCategory.fulfilled, (state, action) => {
+                state.searchStatus = 'loaded'
+                state.error = null
+                state.posts.items = action.payload;
+            })
+            .addCase(fetchByCategory.rejected, (state, action) => {
                 state.searchStatus = 'loading'
                 state.posts.items = []
                 state.error = action.payload.message
